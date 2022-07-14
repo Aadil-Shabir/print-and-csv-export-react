@@ -16,6 +16,7 @@
     "nanoid": "^4.0.0",
     "next": "latest",
     "react": "18.1.0",
+    "react-csv": "^2.2.2",
     "react-dom": "18.1.0",
     "react-icons": "^4.4.0",
     "react-to-print": "^2.14.7",
@@ -29,5 +30,19 @@
     "postcss": "^8.4.14",
     "tailwindcss": "^3.1.2",
     "typescript": "4.7.2"
-  }
+  },
+  "name": "csv-print-sandbox",
+  "description": "This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.0)](https://tailwindcss.com/blog/tailwindcss-v3) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).",
+  "version": "1.0.0",
+  "main": "next.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndSem77/csv-print-sandbox.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndSem77/csv-print-sandbox/issues"
+  },
+  "homepage": "https://github.com/AndSem77/csv-print-sandbox#readme"
 }
