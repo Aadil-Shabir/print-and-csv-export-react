@@ -1,4 +1,4 @@
-import { useState, useContext, useRef } from 'react';
+import { useState, useContext, useRef, useEffect } from "react";
 import {
   Flex,
   Text,
@@ -17,7 +17,7 @@ import {
   MenuList,
   MenuItem,
   Select,
-} from '@chakra-ui/react';
+} from "@chakra-ui/react";
 import {
   SunIcon,
   MoonIcon,
@@ -26,13 +26,13 @@ import {
   AddIcon,
   EditIcon,
   DeleteIcon,
-} from '@chakra-ui/icons';
-import { BsPrinterFill } from 'react-icons/bs';
-import { InventoryContext } from '../../context/InventoryContext';
-import { HiOutlineAdjustments } from 'react-icons/hi';
-import { FaFileCsv } from 'react-icons/fa';
-import ReactToPrint from 'react-to-print';
-import Filter from './FilterForm';
+} from "@chakra-ui/icons";
+import { BsPrinterFill } from "react-icons/bs";
+import { InventoryContext } from "../../context/InventoryContext";
+import { HiOutlineAdjustments } from "react-icons/hi";
+import { FaFileCsv } from "react-icons/fa";
+import ReactToPrint from "react-to-print";
+import Filter from "./FilterForm";
 import { CSVLink, CSVDownload } from "react-csv";
 
 export default function InventoryHeader({ handlePrint }, ref) {
@@ -44,6 +44,11 @@ export default function InventoryHeader({ handlePrint }, ref) {
     filteredInventory,
   } = useContext(InventoryContext);
   const { colorMode, toggleColorMode } = useColorMode();
+  const [csvData, setCsvData] = useState([]);
+
+  useEffect(() => {
+    if (filteredInventory?.length) setCsvData(filteredInventory);
+  }, [filteredInventory]);
 
   return (
     <>
@@ -163,7 +168,7 @@ export default function InventoryHeader({ handlePrint }, ref) {
                 </MenuItem>
               </MenuList>
             </Menu>
-            <CSVLink data={filteredInventory}>
+            <CSVLink data={csvData}>
               <IconButton
                 icon={<FaFileCsv />}
                 colorScheme="blue"
