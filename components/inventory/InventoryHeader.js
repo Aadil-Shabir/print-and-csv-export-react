@@ -47,8 +47,38 @@ export default function InventoryHeader({ handlePrint }, ref) {
   const [csvData, setCsvData] = useState([]);
 
   useEffect(() => {
-    if (filteredInventory?.length) setCsvData(filteredInventory);
+    if (filteredInventory?.length) {
+      let newData = [];
+      let finalData = [];
+      newData = filteredInventory;
+      newData = newData.map((el) => {
+        const { userData, ...rest } = el;
+        const newObj = {
+          _id: rest._id,
+          category: rest.category,
+          description: rest.description,
+          expiryDate: rest.expiryDate,
+          imageURL: rest.imageURL,
+          location: rest.location,
+          manufactureDate: rest.manufactureDate,
+          manufacturer: rest.manufacturer,
+          remarks: rest.remarks,
+          idNumber: rest.idNumber,
+          status: rest.status,
+          reminderDate: rest.reminderDate,
+          userCompany: userData.company,
+          userCountry: userData.country,
+          userEmail: userData.email,
+          userPermissions: userData.permissions,
+        };
+        finalData.push(newObj);
+        console.log("dinal Data", finalData);
+      });
+      setCsvData(finalData);
+    }
   }, [filteredInventory]);
+
+  console.log("Data for CSV", csvData);
 
   return (
     <>
